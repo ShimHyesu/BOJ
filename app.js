@@ -1,20 +1,20 @@
 const fs = require("fs");
-let input = fs.readFileSync("./input.txt").toString().split('\n');
+let input = fs.readFileSync("./input.txt").toString().split(' ');
+// let input = fs.readFileSync('/dev/stdin').toString().split(' ');
 // console.log(input);
 
-var a = +input[0];
-var b = input[1].split('');
-// console.log(b);
+let a = +input[0];
+let b = +input[1];
 
-var a1 = a * +b[2];
-var a2 = a * +b[1];
-var a3 = a * +b[0];
+let min = b - 45;
 
-var sum = a1 + a2*10 + a3*100;
+if( min < 0 ) {
+    min += 60;
+    a -= 1;
+};
 
-console.log( a1 );
-console.log( a2 );
-console.log( a3 );
-console.log( sum );
+if( a < 0 ) {
+    a = 23;
+}
 
-
+console.log(a, min);
