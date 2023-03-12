@@ -1,20 +1,14 @@
-const fs = require("fs");
-let input = fs.readFileSync("./input.txt").toString().split(' ');
-// let input = fs.readFileSync('/dev/stdin').toString().split(' ');
-// console.log(input);
+// 시간초과가 뜨지 않으려면 하나씩 결과값을 도출해주기 보다는 한번에 모아놨다가 주는 편이 훨씬 빠름
 
-let a = +input[0];
-let b = +input[1];
+let input = require('fs').readFileSync('input.txt').toString().split('\n');
+// let input = require('fs').readFileSync('/dev/stdin').toString().split('\n');
 
-let min = b - 45;
+let max = +input[0];
+let answer = '';
 
-if( min < 0 ) {
-    min += 60;
-    a -= 1;
-};
-
-if( a < 0 ) {
-    a = 23;
+for (let i = 1; i <= max; i++) {
+    let num = input[i].split(' ');
+    answer += +num[0] + +num[1] + "\n";
 }
 
-console.log(a, min);
+console.log(answer);
