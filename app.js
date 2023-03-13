@@ -1,27 +1,26 @@
-// EOF(End Of File) : 데이터 소스로부터 더 이상 읽을 수 있는 데이터가 없음
+const fs = require("fs");
+const input = fs.readFileSync("./input.txt").toString().trim().split('\n');
+// const input = fs.readFileSync("/dev/stdin").toString().trim().split('\n');
+// console.log(input);
 
-const readline = require("readline");
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
+let count  = Number(input[0]);
+let arr = input[1].split(' ').map( a => parseInt(a));
 
-let inputLine = [];
+// 큰 배열에 대해서, Math.min Math.max를 호출하면 메모리가 초과될 수 있음
+// console.log(Math.min(...arr) + ' ' + Math.max(...arr));
 
-rl.on("line", (line)=>{
-    /*입력 받는 값을 처리하는 코드*/
+let min = arr[0];
+let max = arr[0];
 
-    inputLine.push(line)
-    let input = line.split(' ').map(a => parseInt(a));
-    
-    if(line) {
-        console.log(input[0] + input[1]);
-    }else {
-        rl.close();
+for(let i=1 ; i< count ; i++) {
+    if(min > arr [i]) {
+        min = arr[i];
     }
-});
 
-rl.on("close", ()=>{
-	/*입력이 끝나고 실행할 코드*/
-	process.exit();
-});
+    if(max < arr [i]) {
+        max = arr[i];
+    }
+}
+
+console.log(min + ' ' + max);
+
