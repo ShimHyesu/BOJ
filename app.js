@@ -1,14 +1,27 @@
-// 시간초과가 뜨지 않으려면 하나씩 결과값을 도출해주기 보다는 한번에 모아놨다가 주는 편이 훨씬 빠름
+// EOF(End Of File) : 데이터 소스로부터 더 이상 읽을 수 있는 데이터가 없음
 
-let input = require('fs').readFileSync('input.txt').toString().split('\n');
-// let input = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+const readline = require("readline");
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
 
-let max = +input[0];
-let answer = '';
+let inputLine = [];
 
-for (let i = 1; i <= max; i++) {
-    let num = input[i].split(' ');
-    answer += +num[0] + +num[1] + "\n";
-}
+rl.on("line", (line)=>{
+    /*입력 받는 값을 처리하는 코드*/
 
-console.log(answer);
+    inputLine.push(line)
+    let input = line.split(' ').map(a => parseInt(a));
+    
+    if(line) {
+        console.log(input[0] + input[1]);
+    }else {
+        rl.close();
+    }
+});
+
+rl.on("close", ()=>{
+	/*입력이 끝나고 실행할 코드*/
+	process.exit();
+});
